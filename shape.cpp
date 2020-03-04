@@ -15,78 +15,102 @@ protected:
   char shapeType;
 
 public:
-  shape(int n, char type) : count(n), shapeType(type) {
+  shape(int n, char type) : count(n), shapeType(type) { }
 
-  pts = new pts[n];
-  }
-
-  ~shape() {
-
-    delete[] pts;
-  }
-  
-
-  void move(int x, int y) {
-
-
-    for(int i=0;i<n;++i) {
-
-      pts[i].x = pts[i].x + x;
-      pts[i].y = pts[i].y + y;
-    }
-
-    cout<<"points moved\n";
-
-    for(int i=0;i<n;++i) {
-      cout<<pts[i].x << "\n" << pts[i].y;
-    }
-
-  }
+  void move(int x, int y) { }
 
   void draw();
 
   void erase();
 
-  char GetType();
+  char GetType() {
+    return shapeType;
+  }
 
-  int arr[100];
+  ~shape() { }
 
 };
 
 class line : public shape {
 
+  line() : shape(2,'l') { }
+
   line(int n, char type) : shapes(n, type) { }
 
   void draw() {
-    cout<<"Line drawn";
+
+    cout<<"co-ordinates of line drawn";
+    for(int i=0;i<count;++i) {
+
+      POINT p = new POINT;
+      cout<<p.x <<" "<<p.y<<"\n";
+    }
   }
 
   void erase() {
-    cout<<"Line erased";
+
+    cout<<"line erased";
+    delete[] pts;
   }
   setPoints() {
 
-  for(int i=0;i<n;++i) {
-    cin>>pts[i].x >> pts[i].y;
+  pts = new POINT[count];
+  cout<<"enter the co-ordinates for line\n";
+
+  for(int i=0;i<count;++i) {
+
+    POINT p;
+    cin>>p.x >> p.y;
+    pts[i] = p;
   }
+}
+
+void move(int x, int y) {
+
+  for(int i=0;i<count;++i) {
+    POINT p = pts[i];
+    pts[i].x = pts[i].x + x;
+    pts[i].y = pts[i].y + y;
+  }
+}
 
 };
 
 class rectangle : public shape {
 
-  rectangle(int n, char type) : shapes(n, type) { }
+  rectangle(): shape(4,'r') { }
 
   void draw() {
-    cout<<"Rectangle drawn";
+    cout<<"co-ordinates of rectangle drawn\n";
+    for(int i=0;i<count;++i) {
+
+      POINT p = new POINT;
+      cout<<p.x <<" "<<p.y<<"\n";
   }
 
   void erase() {
     cout<<"Rectangle erased";
+    delete[] pts;
+  }
+
+  void move(int x, int y) {
+
+    for(int i=0;i<count;++i) {
+      POINT p = pts[i];
+      pts[i].x = pts[i].x + x;
+      pts[i].y = pts[i].y + y;
+    }
   }
   setPoints() {
 
-    for(int i=0;i<n;++i) {
-      cin>>pts[i].x >> pts[i].y;
+    pts = new POINT[count];
+    cout<<"enter the co-ordinates for rectangle\n";
+
+    for(int i=0;i<count;++i) {
+
+      POINT p;
+      cin>>p.x >> p.y;
+      pts[i] = p;
     }
   }
 
@@ -94,94 +118,92 @@ class rectangle : public shape {
 
 class polygon : public shape {
 
-  polygon(int n, char type) : shapes(n, type) { }
+  polygon() : shape('p') { }
+
+  int sides;
+  cout<<"enter sides of polygon";
+  cin>>sides;
+  count  = sides;
 
   void draw() {
-    cout<<"Polygon drawn";
+
+    cout<<"co-ordinates of polygon drawn\n";
+    for(int i=0;i<count;++i) {
+
+      POINT p = new POINT;
+      cout<<p.x <<" "<<p.y<<"\n";
+  }
   }
 
   void erase() {
     cout<<"Polygon erased";
+    delete[] pts;
+  }
+
+  void move(int x, int y) {
+
+    for(int i=0;i<count;++i) {
+      POINT p = pts[i];
+      pts[i].x = pts[i].x + x;
+      pts[i].y = pts[i].y + y;
+    }
   }
 
   setPoints() {
 
-    for(int i=0;i<n;++i) {
-      cin>>pts[i].x >> pts[i].y;
+    pts = new POINT[count];
+    cout<<"enter the co-ordinates for rectangle\n";
+
+    for(int i=0;i<count;++i) {
+
+      POINT p;
+      cin>>p.x >> p.y;
+      pts[i] = p;
     }
   }
-}
+};
 
 int main() {
 
-  int choice, op;
-  cout<<"enter choice of shape\n";
-  cin>>choice;
+  int choice, num;
+  cout<<"enter the no. of shapes\n";
+  cin>>num;
+
+  for(i=0;i<num;i++){
+         int choice = 0;
+         
+            cout << endl << endl << endl << "Menu: ";
+            cout << endl << "Choose the shape type to enter : ";
+             cout << endl << "1. Line";
+             cout << endl << "2. Rectangle";
+           cout << endl << "3. Polygon" << endl;
+           cin >> choice;
+        }while(choice<1 || choice>3);
+        if(choice==1){
+            Line* l = new Line();
+            array[i] = l;
+        }
+        if(choice==2){
+            Rectangle* r = new Rectangle();
+            array[i] = r;
+        }
+         if(choice==3){
+            Polygon* p = new Polygon();
+            array[i] = p;
+}  }
+
 
   Line l;
   Rectangle r;
   Polygon p;
 
-  switch(choice)
-  {
-    case 1:
+  shape **arr = new *shape[num];
 
-    cout<<"enter choice of operation 1 to 4:\n";
+  for(int i=0;i<num)
 
-    switch(op) {
 
-      case 1:
-      l.setPoints(); break;
 
-      case 2:
-      l.draw(); break;
 
-      case 3:
-      l.erase(); break;
-    }
-
-    case 2:
-    cout<<"enter choice of operation 1 to 4:\n";
-    switch(op) {
-
-      case 1:
-      r.setPoints(); break;
-
-      case 2:
-      r.draw(); break;
-
-      case 3:
-      r.erase(); break;
-    }
-
-    case 3:
-    cout<<"enter choice of operation 1 to 4:\n";
-    switch(op) {
-
-      case 1:
-      r.setPoints(); break;
-
-      case 2:
-      r.draw(); break;
-
-      case 3:
-      r.erase(); break;
-    }
-
-    case 4:
-    cout<<"enter choice of operation 1 to 4:\n";
-
-    switch(op) {
-
-      case 1:
-      r.setPoints(); break;
-
-      case 2:
-      r.draw(); break;
-
-      case 3:
-      r.erase(); break;
-    }
 
 
 
