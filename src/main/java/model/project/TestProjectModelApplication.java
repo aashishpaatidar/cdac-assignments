@@ -3,6 +3,7 @@ package model.project;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//main method WOW
 @SpringBootApplication
 public class TestProjectModelApplication {
 
